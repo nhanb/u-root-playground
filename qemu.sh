@@ -1,3 +1,12 @@
+# uses host (Arch) kernel - works, but needs `modprobe e1000`
+qemu-system-x86_64 \
+    -enable-kvm \
+    -m 4096M \
+    -cpu max \
+    -kernel /boot/vmlinuz-linux \
+    -initrd /tmp/initramfs.linux_amd64.cpio \
+    -nographic -append "console=ttyS0" \
+
 # uses boot2container kernel - confirmed working
 qemu-system-x86_64 \
     -enable-kvm \
