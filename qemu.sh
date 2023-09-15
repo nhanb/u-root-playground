@@ -1,25 +1,12 @@
-doas qemu-system-x86_64 \
-    -m 4096M \
+# uses boot2container kernel - confirmed working
+qemu-system-x86_64 \
     -enable-kvm \
-    -kernel "$HOME/Downloads/vmlinuz-linux" \
+    -m 4096M \
+    -cpu max \
+    -kernel ./linux-x86_64-qemu \
     -initrd /tmp/initramfs.linux_amd64.cpio \
     -nographic -append "console=ttyS0" \
-    -device e1000,netdev=host0\
-    -netdev user,id=host0,net=192.168.0.0/24,dhcpstart=192.168.0.10,ipv6=off
-
-
-    -net nic,vlan=0,model=virtio \
-    -net user,vlan=0,hostfwd=tcp::2222-:2222,hostname=u-boot \
-
-    -net nic,macaddr=52:54:aa:aa:aa:aa
-
-    -nic user,model=virtio-net-pci
-    #-nic user,model=virtio
-    #-object rng-random,filename=/dev/urandom,id=rng0 \
-    #-device virtio-rng-pci,rng=rng0 \
-    #-serial mon:stdio \
-    #-enable-kvm \
-     #-netdev user,id=mynet0,net=192.168.76.0/24,dhcpstart=192.168.76.9
+    #-nic user,model=virtio-net-pci
 
 # tiny core linux
 qemu-system-x86_64 -enable-kvm \
