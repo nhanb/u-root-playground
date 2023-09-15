@@ -7,16 +7,6 @@ qemu-system-x86_64 \
     -initrd /tmp/initramfs.linux_amd64.cpio \
     -nographic -append "console=ttyS0" \
 
-# uses boot2container kernel - confirmed working
-qemu-system-x86_64 \
-    -enable-kvm \
-    -m 4096M \
-    -cpu max \
-    -kernel ./linux-x86_64-qemu \
-    -initrd /tmp/initramfs.linux_amd64.cpio \
-    -nographic -append "console=ttyS0" \
-    #-nic user,model=virtio-net-pci
-
 # tiny core linux
 qemu-system-x86_64 -enable-kvm \
     -m 2048 \
